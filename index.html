@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eu Te Amo ❤️</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      overflow:hidden;
+      background:black;
+      height:100vh;
+    }
+
+    /* TELA INICIAL */
+
+    .start-screen{
+      position:fixed;
+      width:100%;
+      height:100%;
+      background:black;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      z-index:999;
+      flex-direction:column;
+    }
+
+    .btn{
+      padding:20px 50px;
+      border:none;
+      border-radius:20px;
+      background:#ff1493;
+      color:white;
+      font-size:30px;
+      cursor:pointer;
+      box-shadow:0 0 30px #ff1493;
+      transition:0.3s;
+      animation:pulse 1.5s infinite;
+    }
+
+    .btn:hover{
+      transform:scale(1.1);
+    }
+
+    @keyframes pulse{
+      0%{
+        box-shadow:0 0 10px #ff1493;
+      }
+
+      50%{
+        box-shadow:0 0 40px #ff1493;
+      }
+
+      100%{
+        box-shadow:0 0 10px #ff1493;
+      }
+    }
+
+    /* CONTEÚDO */
+
+    .main{
+      display:none;
+      width:100%;
+      height:100vh;
+      overflow:hidden;
+      position:relative;
+      background:black;
+    }
+
+    .titulo{
+      position:absolute;
+      top:30px;
+      width:100%;
+      text-align:center;
+      color:white;
+      font-size:38px;
+      z-index:10;
+      text-shadow:
+      0 0 10px red,
+      0 0 20px blue,
+      0 0 30px pink;
+      animation:entrada 2s ease;
+      padding:10px;
+    }
+
+    @keyframes entrada{
+      from{
+        opacity:0;
+        transform:translateY(-80px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* TEXTOS CAINDO */
+
+    .love{
+      position:absolute;
+      top:-100px;
+      font-size:26px;
+      font-weight:bold;
+      animation:cair linear forwards;
+      user-select:none;
+      white-space:nowrap;
+    }
+
+    @keyframes cair{
+      from{
+        transform:translateY(-100px);
+      }
+
+      to{
+        transform:translateY(120vh);
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- TELA INICIAL -->
+
+  <div class="start-screen" id="start">
+    <button class="btn" onclick="iniciar()">
+      Clique Aqui 💖
+    </button>
+  </div>
+
+  <!-- SITE -->
+
+  <div class="main" id="main">
+
+    <div class="titulo">
+      Eu te amo em todas as línguas possíveis ❤️ <br>
+      Feliz aniversário meu amor 💖
+    </div>
+
+  </div>
+
+  <script>
+
+    const frases = [
+
+      "Eu te amo",
+      "I love you",
+      "Je t’aime",
+      "Te amo",
+      "Ti amo",
+      "Ich liebe dich",
+      "愛してる",
+      "사랑해",
+      "Я тебя люблю",
+      "أنا أحبك",
+      "我爱你",
+      "Ik hou van jou",
+      "Seni seviyorum",
+      "Kocham cię",
+      "Σ' αγαπώ",
+      "Eu amo você",
+      "Aloha wau ia oe",
+      "Volim te",
+      "Jag älskar dig",
+      "Jeg elsker dig",
+      "Jeg elsker deg",
+      "Mahal kita",
+      "Ani ohev אותך",
+      "Mi amas vin",
+      "Ndimakukonda",
+      "Te iubesc",
+      "Aku cinta kamu",
+      "Main tumse pyar karta hoon"
+
+    ];
+
+    const cores = [
+      "#ff0000",
+      "#00ff00",
+      "#0000ff",
+      "#ff00ff",
+      "#00ffff",
+      "#ffff00",
+      "#ff1493",
+      "#ffffff"
+    ];
+
+    function iniciar(){
+
+      document.getElementById("start").style.display = "none";
+      document.getElementById("main").style.display = "block";
+
+      setInterval(criarTexto, 80);
+
+    }
+
+    function criarTexto(){
+
+      const texto = document.createElement("div");
+
+      texto.classList.add("love");
+
+      texto.innerHTML =
+      frases[Math.floor(Math.random() * frases.length)];
+
+      texto.style.left =
+      Math.random() * window.innerWidth + "px";
+
+      texto.style.color =
+      cores[Math.floor(Math.random() * cores.length)];
+
+      texto.style.animationDuration =
+      (Math.random() * 4 + 4) + "s";
+
+      texto.style.fontSize =
+      (Math.random() * 20 + 20) + "px";
+
+      document.getElementById("main").appendChild(texto);
+
+      setTimeout(() => {
+        texto.remove();
+      },10000);
+
+    }
+
+  </script>
+
+</body>
+</html>
